@@ -1,0 +1,72 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'eclipse'
+    id 'maven-publish'
+}
+
+version = '1.0.0'
+group = 'fr.cofear.ariavoicebridge'
+archivesBaseName = 'aria-voice-bridge'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.18.2'
+
+    runs {
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                ariavoicebridge {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                ariavoicebridge {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven { url = 'https://maven.maxhenkel.de/repository/public' }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content { includeGroup "maven.modrinth" }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.18.2-40.2.17'
+
+    // API Simple Voice Chat. Si ta version Voice Chat est très différente, adapte voicechat_api_version.
+    implementation 'de.maxhenkel.voicechat:voicechat-api:2.1.12'
+
+    // Pour tester en dev. Sur ton vrai serveur, Simple Voice Chat est déjà dans /mods.
+    runtimeOnly fg.deobf('maven.modrinth:simple-voice-chat:forge-1.18.2-2.4.28')
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "ariavoicebridge",
+                "Specification-Vendor"    : "CoFear",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "CoFear"
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

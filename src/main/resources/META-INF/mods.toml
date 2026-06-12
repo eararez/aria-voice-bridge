@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="ariavoicebridge"
+version="1.0.0"
+displayName="A.R.I.A Voice Bridge"
+authors="CoFear"
+description='''
+Bridge vocal pour A.R.I.A : joue un WAV 48kHz via Simple Voice Chat.
+'''
+
+[[dependencies.ariavoicebridge]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ariavoicebridge]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ariavoicebridge]]
+    modId="voicechat"
+    mandatory=true
+    versionRange="[1.18.2-2.4.0,)"
+    ordering="AFTER"
+    side="BOTH"

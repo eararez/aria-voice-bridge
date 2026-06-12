@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://maven.maxhenkel.de/repository/public' }
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+            content { includeGroup "maven.modrinth" }
+        }
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'aria-voice-bridge'
