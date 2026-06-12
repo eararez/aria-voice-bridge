@@ -38,7 +38,6 @@ public class AriaVoicePlayer {
             }
 
             AudioPlayer audioPlayer = api.createAudioPlayer(channel, api.createEncoder(), audio);
-            audioPlayer.setOnStopped(channel::close);
             audioPlayer.startPlaying();
             count++;
         }
